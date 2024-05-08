@@ -4,23 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <title>poof</title>
     <style>
         :root {
-            --background-primary: #E2EFFF;
+            /* --background-primary: #E2EFFF; */
+            --background-primary: #FEFBEB;
             --color-primary: black;
             --color-secondary: rgb(55, 55, 55);
             --color-dash: #99acad;
             --background-reverse: #121212;
             --color-reverse: #f5f7fa;
+            /* --color-reverse: #FEFBEB; */
             --link-hover-color: #9BB1FF; 
         }
 
         body {
-            font-family: 'Quicksand-Medium';
+            font-family: 'JetBrains Mono';
             font-size: 17px;
             margin: 0;
             padding: 20px;
@@ -36,9 +38,10 @@
 
         body.johan {
             --background-primary: #0B1215;
-            --color-primary: #f5f7fa;
+            --color-primary: #FEFBEB;
             --color-secondary: rgb(184, 184, 184);
-            --color-dash: #E2FDFF;
+            /* --color-dash: #E2FDFF; */
+            --color-dash: #99acad;
             --background-reverse: #E2FDFF;
             --color-reverse: black;
         }
@@ -139,7 +142,6 @@
         }
         a {
             text-decoration: none;
-            color: var(--color-primary);
             transition: color 0.1s ease; 
         }
         a:visited {
