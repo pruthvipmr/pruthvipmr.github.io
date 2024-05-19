@@ -39,7 +39,7 @@
 
         body.johan {
             --background-primary: #0B1215;
-            --color-primary: #FEFBEB;
+            --color-primary: #CCD5D6;
             --color-secondary: rgb(184, 184, 184);
             /* --color-dash: #E2FDFF; */
             --color-dash: #99acad;
@@ -112,6 +112,55 @@
         .links a {
             margin: 0 6px;
         }
+
+        .projects-list,
+        .experience-list {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .project-item,
+        .experience-item {
+            display: flex;
+            flex-wrap: nowrap;
+            align-items: flex-start;
+            margin-bottom: 10px;
+        }
+
+        .project-item a,
+        .experience-item a {
+            font-size: 16px;
+            color: var(--link-color);
+            text-decoration: none;
+            min-width: 200px;
+        }
+
+        .project-item a:hover,
+        .experience-item a:hover {
+            color: var(--link-hover-color);
+            text-decoration: underline;
+        }
+
+        .project-details,
+        .experience-details {
+            display: flex;
+            flex-direction: column;
+            margin-left: 20px;
+        }
+
+        .project-desc,
+        .experience-desc {
+            color: var(--color-primary);
+            margin-bottom: 5px;
+        }
+
+        .project-info,
+        .experience-info {
+            font-size: 14px;
+            color: var(--color-dash);
+            text-align: left;
+        }
+
     </style>
 </head>
 <body>
@@ -127,69 +176,107 @@
             I single handedly terrorized Microcenter's supply chain. 
             That's what a true market maker looks like.
         </p>
-        <h4>Stuff that counts as experience</h4>
-        <ul>
-            <li>
-                <b>Algorithmic Trader</b> @ <a href="https://www.rentec.com/Home.action?index=true" target="_blank"><i><b>Home</b></i></a>: deep learning based trading strategies (GNNs and Reinforcement Learning); Rentech wishes they were me
+        <h3>Stuff that counts as experience</h3>
+        <ul class="experience-list">
+            <li class="experience-item">
+                <a href="https://www.rentec.com/Home.action?index=true" target="_blank"><b>Home</b></a>
+                <div class="experience-details">
+                    <span class="experience-desc"><b>Algorithmic Trader</b>: deep learning based trading strategies</span>
+                    <span class="experience-info">graph neural networks and reinforcement learning</span>
+                </div>
             </li>
-            <li>
-                <b>Data Science, quant</b> @
-                <a href="https://www.arbolmarket.com/" target="_blank"><i><b>Arbol</b></i></a>:
-                stochastic modelling for natural disasters; built first earthquake and wildfire parametric product
+            <li class="experience-item">
+                <a href="https://www.arbolmarket.com/" target="_blank"><b>Arbol</b></a>
+                <div class="experience-details">
+                    <span class="experience-desc"><b>Data Science</b>: stochastic modelling for natural disasters</span>
+                    <span class="experience-info">0 -> 1 built first earthquake and wildfire parametric insurance products </span>
+                </div>
             </li>
-            <li>
-                <b>Quantitative Trader</b> @ <a href="https://www.mathfinancegroup.com/" target="_blank"><i><b>NYU Math Finance Group</b></i></a>: built machine learning based trading strategies, spread modeling in pairs trading using regression and time series models
+            <li class="experience-item">
+                <a href="https://www.mathfinancegroup.com/" target="_blank"><b>NYU MFG</b></a>
+                <div class="experience-details">
+                    <span class="experience-desc"><b>Quantitative Trader</b>: built machine learning based trading strategies</span>
+                    <span class="experience-info">spread modeling in pairs trading using regression and time series models</span>
+                </div>
             </li>
-            <li>
-                <b>Data Science, product analytics</b> @
-                <a href="https://www.cisco.com/site/id/en/products/networking/dna-center-platform/index.html#tabs-a1f7f23988-item-37015237d7-tab" target="_blank"><i><b>Cisco</b></i></a>:
-                revenue forecasting and product analytics
+            <li class="experience-item">
+                <a href="https://www.cisco.com/site/id/en/products/networking/dna-center-platform/index.html#tabs-a1f7f23988-item-37015237d7-tab" target="_blank"><b>Cisco</b></a>
+                <div class="experience-details">
+                    <span class="experience-desc"><b>Data Science, Product</b>: revenue forecasting and product analytics</span>
+                    <span class="experience-info">architected financial dataset for gtm, sales, and customer success</span>
+                </div>
             </li>
-            <li>
-                <b>Machine Learning</b> @
-                <a href="https://www.ivoyant.com/digital-transformation/" target="_blank"><i><b>Ivoyant</b></i></a>:
-                multivariate time series forecasting to predict customer churn
+            <li class="experience-item">
+                <a href="https://www.ivoyant.com/digital-transformation/" target="_blank"><b>Ivoyant</b></a>
+                <div class="experience-details">
+                    <span class="experience-desc"><b>ML Engineer</b>: time series forecasting to predict customer churn</span>
+                    <span class="experience-info">multivariate XGBoost regression model decreased churn by 8%</span>
+                </div>
             </li>
-            <li>
-                <b>Research</b> @ <a href="https://liquidmercury.com/" target="_blank"><i><b>Mercdax</b></i></a>: blockchain research for early stage institutional crypto exchange
+            <li class="experience-item">
+                <a href="https://liquidmercury.com/" target="_blank"><b>Mercdax</b></a>
+                <div class="experience-details">
+                    <span class="experience-desc"><b>Research</b>: blockchain research for early institutional crypto exchange</span>
+                </div>
             </li>
-            <li>
-                <b>Research</b> @
-                <a href="https://stanfordhealthcare.org/medical-clinics/byers-eye-institute.html" target="_blank"><i><b>Stanford Byers Eye Institute</b></i></a>:
-                created patient database and researched ocular melanomas
+            <li class="experience-item">
+                <a href="https://stanfordhealthcare.org/medical-clinics/byers-eye-institute.html" target="_blank"><b>Stanford Medicine</b></a>
+                <div class="experience-details">
+                    <span class="experience-desc"><b>Research</b>: created patient database and researched ocular melanomas</span>
+                </div>
             </li>
         </ul>
-        <h4>Stuff that should count as experience</h4>
-        <ul>
-            <li>
-                <a href="https://github.com/pruthvipmr" target="_blank"><i><b>Deep Algo Trading</b></i></a>: a hybrid resnet-lstm model to forecast stocks (in progress)
+        <h3>Stuff that should count as experience</h3>
+        <ul class="projects-list">
+            <li class="project-item">
+                <a href="https://github.com/pruthvipmr/DeepAlgoTrading" target="_blank"><b>Deep Algo Trading</b></a>
+                <div class="project-details">
+                    <span class="project-desc">hybrid resnet-lstm model to forecast stocks</span>
+                    <span class="project-info">in progress, forecasts next day close price using 5 day lag</span>
+                </div>
             </li>
-            <li>
-                <a href="https://github.com/pruthvipmr/cmdF" target="_blank"><i><b>Cmd-f</b></i></a>: 
-                ctrl-f but for youtube videos
+            <li class="project-item">
+                <a href="https://github.com/pruthvipmr/cmdF" target="_blank"><b>Cmd-f</b></a>
+                <div class="project-details">
+                    <span class="project-desc">ctrl-f but for youtube videos</span>
+                    <span class="project-info">whisper audio transcription, gpt4 image capture</span>
+                </div>
             </li>
-            <li>
-                <a href="https://github.com/pruthvipmr/repoToPrompt" target="_blank"><i><b>Project to txt</b></i></a>: 
-                recursively convert a project directory to a single text file for llms
+            <li class="project-item">
+                <a href="https://github.com/pruthvipmr/repoToPrompt" target="_blank"><b>Project to txt</b></a>
+                <div class="project-details">
+                    <span class="project-desc">recursively convert a project directory to a single text file for llms</span>
+                    <span class="project-info">easier to prompt chatgpt/claude with a single text file instead of copy pasting</span>
+                </div>
             </li>
-            <li>
-                <a href="https://github.com/pruthvipmr/Poker-Sim" target="_blank"><i><b>Poker Sim</b></i></a>: 
-                simulate a game of poker by combining monte carlo simulations with game theory optimal strategy
+            <li class="project-item">
+                <a href="https://github.com/pruthvipmr/Poker-Sim" target="_blank"><b>Poker Sim</b></a>
+                <div class="project-details">
+                    <span class="project-desc">simulate a game of Texas Hold'em poker between multiple players</span>
+                    <span class="project-info">dynamic gto strategy, probabilistic opponent modeling, bluffing mechanism, etc.</span>
+                </div>
             </li>
-            <li>
-                <a href="https://github.com/pruthvipmr/expected-goals" target="_blank"><i><b>xG analytics</b></i></a>: 
-                complete ml pipeline to predict expected goals in soccer
+            <li class="project-item">
+                <a href="https://github.com/pruthvipmr/baseballsim" target="_blank"><b>Moneyball</b></a>
+                <div class="project-details">
+                    <span class="project-desc">simulate a baseball game from any half of any inning</span>
+                    <span class="project-info">monte carlo simulation based on inning-level mlb data and pregame moneyline</span>
+                </div>
             </li>
-            <li>
-                <a href="https://github.com/pruthvipmr/baseballsim" target="_blank"><i><b>Moneyball</b></i></a>: 
-                simulate a baseball game from any half of any inning
+            <li class="project-item">
+                <a href="https://github.com/pruthvipmr/expected-goals" target="_blank"><b>xG Analytics</b></a>
+                <div class="project-details">
+                    <span class="project-desc">complete ml pipeline to predict expected goals in soccer</span>
+                </div>
             </li>
         </ul>
         <p>
+            In other news, I'm a classically trained pianist and also played on NYU's 
+            <a href="https://gocolumbialions.com/news/2019/11/18/no-7-mens-squash-claims-wins-over-fordham-nyu.aspx" target="_blank"><b>squash</b></a> team. 
             I try to live life the way Calvin and Hobbes would, so email me at 
             <a href="mailto:pruthvi.pmr@gmail.com"><b>pruthvi.pmr@gmail.com</b></a> 
             or spam the links below if you can relate. 
-            Reach out if you want an updated resume.
+            Resume available upon command.
         </p>
 
         <div class="links">
