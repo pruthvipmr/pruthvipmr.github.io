@@ -1,315 +1,294 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
     <title>poof</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Instrument+Serif&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
     <style>
         :root {
-            /* --background-primary: #E2EFFF; */
-            /* --background-primary: #FEFBEB; */
-            --background-primary: #F5F5F5;
-            --color-primary: black;
-            --color-secondary: rgb(55, 55, 55);
-            --color-dash: #99acad;
-            --background-reverse: #121212;
-            --color-reverse: #f5f7fa;
-            /* --color-reverse: #FEFBEB; */
-            --link-hover-color: #9BB1FF;
-            --link-color: #8383FF;
+            --bg-color: #F5F5F5;
+            --text-color: #1a1a1a;
+            --dim-text-color: #666;
+            --transition-duration: 0.5s;
         }
-
-        body {
-            font-family: 'JetBrains Mono';
-            font-size: 15px;
+        [data-theme="dark"] {
+            --bg-color: #1a1a1a;
+            --text-color: #CCD5D6;
+            --dim-text-color: #999;
+        }
+        body, html {
             margin: 0;
-            padding: 20px;
-            background-color: var(--background-primary);
-            color: var(--color-primary);
+            padding: 0;
+            height: 100%;
+        }
+        body {
+            font-family: 'JetBrains Mono', monospace;
+            padding: 120px 20px 20px;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            transition: background-color var(--transition-duration) ease, color var(--transition-duration) ease;
+        }
+        #landing-page {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('background.jpeg');
+            background-size: cover;
+            background-position: center;
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
-            cursor: crosshair;
-            line-height: 1.2;
+            z-index: 1000;
+            transition: opacity 1s ease-out;
         }
-
-        body.johan {
-            --background-primary: #0B1215;
-            --color-primary: #CCD5D6;
-            --color-secondary: rgb(184, 184, 184);
-            /* --color-dash: #E2FDFF; */
-            --color-dash: #99acad;
-            --background-reverse: #E2FDFF;
-            --color-reverse: black;
+        #landing-page h1 {
+            font-size: 15vw;
+            color: black;
+            /* text-shadow: 2px 2px 4px rgba(0,0,0,0.5); */
         }
-
-        /* .jetbrains-mono-default {
-            font-family: "JetBrains Mono", monospace;
-            font-optical-sizing: auto;
-            font-weight: 400;
-            font-style: normal;
-        } */
-
-        main {
-            max-width: 900px;
-            text-align: left;
+        #main-content {
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 15px;
+            opacity: 0;
+            transition: opacity 1s ease-in;
         }
-
+        header {
+            margin-bottom: 40px;
+        }
         h1 {
-            color: var(--color-primary);
-            /* font-family: 'Questrial'; */
+            font-family: 'Instrument Serif', serif;
+            font-weight: normal;
+            font-size: 2.5em;
+            margin: 0;
         }
-
-        ul {
-            list-style-type: disc;
-            padding-left: 20px;
-            line-height: 1.2;
+        h2 {
+            color: var(--text-color);
+            font-size: 1em;
+            margin-bottom: 1em;
+            font-weight: normal;
         }
-
-        li {
+        h3 {
+            color: var(--text-color);
+            font-size: 1em;
+            margin-bottom: 1em;
+            font-weight: bold;
+        }
+        .section {
+            margin-bottom: 40px;
+        }
+        .main-content {
+            display: flex;
+            gap: 40px;
+        }
+        .column {
+            flex: 1;
+        }
+        .project {
+            margin-bottom: 20px;
+        }
+        .project h3 {
             margin-bottom: 5px;
         }
-
-        .hidden {
-            display: none;
+        .project p {
+            margin-top: 0;
+            color: var(--dim-text-color);
         }
-
-        .links {
-            margin-top: 20px;
+        a {
+            color: var(--text-color);
+            text-decoration: underline;
+            text-underline-offset: 2px;
+            transition: text-decoration-thickness 0.3s ease;
+        }
+        a:hover {
+            text-decoration-thickness: 2px;
+        }
+        .project h3 a::after {
+            content: ' →';
+            display: inline-block;
+            margin-left: 4px;
+            transition: transform 0.3s ease;
+            font-weight: 400;
+        }
+        .project h3 a:hover::after {
+            transform: translateX(3px);
+        }
+        footer {
+            margin-top: 40px;
             padding-top: 20px;
-            border-top: 2px dashed var(--color-dash);
+            border-top: 1px dashed var(--dim-text-color);
             text-align: center;
         }
-
-        .links a {
-            color: var(--color-primary); 
-            text-decoration: none;
-            margin: 0 6px;
-            transition: color 0.1s ease; 
+        footer a, #theme-switcher {
+            margin: 0 10px;
         }
-
-        .links a:hover {
-            color: var(--link-hover-color); 
-        }
-
-        ::selection {
-            background-color: #9BB1FF; 
-            color: #121212; 
-        }
-
-        a {
-            text-decoration: none;
-            color: var(--link-color);
-            transition: color 0.1s ease; 
-        }
-
-        a:visited {
-            color: var(--link-color);
-        }
-
-        /* a:active  */
-        a:hover {
-            color: var(--link-hover-color);
-            text-decoration: underline; 
-        }
-
-        .links a {
-            margin: 0 6px;
-        }
-
-        .projects-list,
-        .experience-list {
-            list-style-type: none;
-            padding-left: 0;
-        }
-
-        .project-item,
-        .experience-item {
-            display: flex;
-            flex-wrap: nowrap;
-            align-items: flex-start;
-            margin-bottom: 8px;
-        }
-
-        .project-item a,
-        .experience-item a {
-            font-size: 15px;
-            color: var(--link-color);
-            text-decoration: none;
-            min-width: 200px;
-        }
-
-        .project-item a:hover,
-        .experience-item a:hover {
-            color: var(--link-hover-color);
+        #theme-switcher {
+            background: none;
+            border: none;
+            color: var(--text-color);
+            cursor: pointer;
+            font-family: inherit;
+            font-size: inherit;
             text-decoration: underline;
+            text-underline-offset: 2px;
         }
-
-        .project-details,
-        .experience-details {
-            display: flex;
-            flex-direction: column;
-            margin-left: 20px;
+        #theme-switcher:hover {
+            text-decoration-thickness: 2px;
         }
-
-        .project-desc,
-        .experience-desc {
-            color: var(--color-primary);
-            margin-bottom: 0px;
-        }
-
-        .project-info,
-        .experience-info {
-            font-size: 13px;
-            color: var(--color-dash);
-            text-align: left;
-        }
-
     </style>
 </head>
 <body>
-    <main>
-        <h1>Pruthvi Rajaghatta</h1>
-        <p>
-            Currently I'm a <b>Researcher</b> at <a href="https://fintech.gatech.edu/#/" target="_blank"><b>Georgia Tech’s Financial Services Innovation Lab</b></a>
+    <div id="landing-page">
+        <h1>POOF</h1>
+    </div>
+
+    <div id="main-content">
+        <header>
+            <h1>Pruthvi Rajaghatta</h1>
+        </header>
+
+        <p>Currently I'm a <i>Researcher</i> at <a href="https://fintech.gatech.edu/#/" target="_blank">Georgia Tech's FinTech Lab</a>
             where I'm building a backtesting framework for quantitative trading strategies.
-            I studied <b>Applied Math and Computer Science</b> at 
-            <a href="https://cims.nyu.edu/dynamic/" target="_blank"><b>NYU</b></a> 
+            I studied <i>Applied Math and Computer Science</i> at 
+            <a href="https://cims.nyu.edu/dynamic/" target="_blank">NYU</a> 
             and spent some time interning at startups and big tech.
-            In highscool I built a crypto mining rig with 103 gpus. 
-            I single handedly terrorized Microcenter's supply chain. 
-            That's what a true market maker looks like.
-        </p>
-        <h3>Stuff that counts as experience</h3>
-        <ul class="experience-list">
-            <li class="experience-item">
-                <a href="https://www.rentec.com/Home.action?index=true" target="_blank"><b>Home</b></a>
-                
-                <div class="experience-details">
-                    <span class="experience-desc"><b>Algorithmic Trader</b>: deep learning based trading strategies</span>
-                    <span class="experience-info">graph neural networks and reinforcement learning</span>
-                </div>
-            </li>
-            <li class="experience-item">
-                <a href="https://www.arbolmarket.com/" target="_blank"><b>Arbol</b></a>
-                <div class="experience-details">
-                    <span class="experience-desc"><b>Data Science</b>: stochastic modelling for natural disasters</span>
-                    <span class="experience-info">0 -> 1 built first earthquake and wildfire parametric insurance products </span>
-                </div>
-            </li>
-            <li class="experience-item">
-                <a href="https://www.mathfinancegroup.com/" target="_blank"><b>NYU MFG</b></a>
-                <div class="experience-details">
-                    <span class="experience-desc"><b>Quantitative Trader</b>: built machine learning based trading strategies</span>
-                    <span class="experience-info">spread modeling in pairs trading using regression and time series models</span>
-                </div>
-            </li>
-            <li class="experience-item">
-                <a href="https://www.cisco.com/site/id/en/products/networking/dna-center-platform/index.html#tabs-a1f7f23988-item-37015237d7-tab" target="_blank"><b>Cisco</b></a>
-                <div class="experience-details">
-                    <span class="experience-desc"><b>Data Science, Product</b>: revenue forecasting and product analytics</span>
-                    <span class="experience-info">architected financial dataset for gtm, sales, and customer success</span>
-                </div>
-            </li>
-            <li class="experience-item">
-                <a href="https://www.ivoyant.com/digital-transformation/" target="_blank"><b>Ivoyant</b></a>
-                <div class="experience-details">
-                    <span class="experience-desc"><b>ML Engineer</b>: time series forecasting to predict customer churn</span>
-                    <span class="experience-info">multivariate XGBoost regression model decreased churn by 8%</span>
-                </div>
-            </li>
-            <li class="experience-item">
-                <a href="https://liquidmercury.com/" target="_blank"><b>Mercdax</b></a>
-                <div class="experience-details">
-                    <span class="experience-desc"><b>Research</b>: blockchain research for early institutional crypto exchange</span>
-                </div>
-            </li>
-            <li class="experience-item">
-                <a href="https://stanfordhealthcare.org/medical-clinics/byers-eye-institute.html" target="_blank"><b>Stanford Medicine</b></a>
-                <div class="experience-details">
-                    <span class="experience-desc"><b>Research</b>: created patient database and researched ocular melanomas</span>
-                </div>
-            </li>
-        </ul>
-        <h3>Stuff that should count as experience</h3>
-        <ul class="projects-list">
-            <li class="project-item">
-                <a href="https://github.com/pruthvipmr/DeepAlgoTrading" target="_blank"><b>Deep Algo Trading</b></a>
-                <div class="project-details">
-                    <span class="project-desc">hybrid resnet-lstm model to forecast stocks</span>
-                    <span class="project-info">in progress, forecasts next day close price using 5 day lag</span>
-                </div>
-            </li>
-            <li class="project-item">
-                <a href="https://github.com/pruthvipmr/cmdF" target="_blank"><b>Cmd-f</b></a>
-                <div class="project-details">
-                    <span class="project-desc">ctrl-f but for youtube videos</span>
-                    <span class="project-info">whisper audio transcription, gpt4 image capture</span>
-                </div>
-            </li>
-            <li class="project-item">
-                <a href="https://github.com/pruthvipmr/repoToPrompt" target="_blank"><b>Project to txt</b></a>
-                <div class="project-details">
-                    <span class="project-desc">recursively convert a project directory to a single text file for llms</span>
-                    <span class="project-info">easier to prompt chatgpt/claude with a single text file instead of copy pasting</span>
-                </div>
-            </li>
-            <li class="project-item">
-                <a href="https://github.com/pruthvipmr/Poker-Sim" target="_blank"><b>Poker Sim</b></a>
-                <div class="project-details">
-                    <span class="project-desc">simulate a game of Texas Hold'em poker between multiple players</span>
-                    <span class="project-info">dynamic gto strategy, probabilistic opponent modeling, bluffing mechanism, etc.</span>
-                </div>
-            </li>
-            <li class="project-item">
-                <a href="https://github.com/pruthvipmr/baseballsim" target="_blank"><b>Moneyball</b></a>
-                <div class="project-details">
-                    <span class="project-desc">simulate a baseball game from any half of any inning</span>
-                    <span class="project-info">monte carlo simulation based on inning-level mlb data and pregame moneyline</span>
-                </div>
-            </li>
-            <li class="project-item">
-                <a href="https://github.com/pruthvipmr/expected-goals" target="_blank"><b>xG Analytics</b></a>
-                <div class="project-details">
-                    <span class="project-desc">complete ml pipeline to predict expected goals in soccer</span>
-                </div>
-            </li>
-        </ul>
-        <p>
-            In other news, I'm a classically trained pianist and also played on NYU's 
-            <a href="https://gocolumbialions.com/news/2019/11/18/no-7-mens-squash-claims-wins-over-fordham-nyu.aspx" target="_blank"><b>squash</b></a> team. 
-            I try to live life the way Calvin and Hobbes would, so email me at 
-            <a href="mailto:pruthvi.pmr@gmail.com"><b>pruthvi.pmr@gmail.com</b></a> 
-            or spam the links below if you can relate. 
-            Resume available upon command.
         </p>
 
-        <div class="links">
-            <a href="#" id="johanLink"><b>Tenma</b></a>
-            <a href="#" id="tenmaLink" class="hidden"><b>Johan</b></a>
-            <a href="https://www.linkedin.com/in/pruthvipmr/" target="_blank"><b>LinkedIn</b></a>
-            <a href="https://twitter.com/pruthvi_pmr" target="_blank"><b>Twitter</b></a>
-            <a href="https://github.com/pruthvipmr" target="_blank"><b>GitHub</b></a>
+        <div class="main-content">
+            <section class="column">
+                <h2>Previously</h2>
+                <div class="project">
+                    <h3><a href="https://www.rentec.com/Home.action?index=true" target="_blank">Home</a></h3>
+                    <p><i>Algorithmic Trader</i></p>
+                </div>
+                <div class="project">
+                    <h3><a href="https://www.arbolmarket.com/" target="_blank">Arbol</a></h3>
+                    <p><i>Data Scientist</i>, stochastic modelling for natural disasters</p>
+                </div>
+                <div class="project">
+                    <h3><a href="https://www.mathfinancegroup.com/" target="_blank">NYU Math Finance Group</a></h3>
+                    <p><i>Quantitative Trader</i>, ml based strategies</p>
+                </div>
+                <div class="project">
+                    <h3><a href="https://www.cisco.com/site/id/en/products/networking/dna-center-platform/index.html#tabs-a1f7f23988-item-37015237d7-tab" target="_blank">Cisco</a></h3>
+                    <p><i>Data Scientist</i>, product</p>
+                </div>
+                <div class="project">
+                    <h3><a href="https://www.ivoyant.com/digital-transformation/" target="_blank">Ivoyant</a></h3>
+                    <p><i>ML Engineer</i>, churn prediction</p>
+                </div>
+                <div class="project">
+                    <h3><a href="https://liquidmercury.com/" target="_blank">Mercdax</a></h3>
+                    <p><i>Research</i>, blockchain</p>
+                </div>
+                <div class="project">
+                    <h3><a href="https://stanfordhealthcare.org/medical-clinics/byers-eye-institute.html" target="_blank">Stanford Medicine</a></h3>
+                    <p><i>Research</i>, ocular melanomas</p>
+                </div>
+            </section>
+
+            <section class="column">
+                <h2>Projects</h2>
+                <div class="project">
+                    <h3><a href="https://github.com/pruthvipmr/DeepAlgoTrading" target="_blank">Deep Algo Trading</a></h3>
+                    <p>Resnet-LSTM model to forecast stocks</p>
+                </div>
+                <div class="project">
+                    <h3><a href="https://github.com/pruthvipmr/cmdF" target="_blank">Cmd-F</a></h3>
+                    <p>Ctrl-f for Youtube</p>
+                </div>
+                <div class="project">
+                    <h3><a href="https://github.com/pruthvipmr/repoToPrompt" target="_blank">Project to txt</a></h3>
+                    <p>Convert a directory to into a text file</p>
+                </div>
+                <div class="project">
+                    <h3><a href="https://github.com/pruthvipmr/Poker-Sim" target="_blank">Poker Sim</a></h3>
+                    <p>Poker sim using gto, probabilistic opponent modeling, etc.</p>
+                </div>
+                <div class="project">
+                    <h3><a href="https://github.com/pruthvipmr/baseballsim" target="_blank">Moneyball</a></h3>
+                    <p>Simulate a MLB game with inning-level data and pregame moneyline</p>
+                </div>
+                <div class="project">
+                    <h3><a href="https://github.com/pruthvipmr/expected-goals" target="_blank">xG Analytics</a></h3>
+                    <p>ML pipeline to predict expected goals in soccer</p>
+                </div>
+            </section>
+
+            <section class="column">
+                <h2>Random</h2>
+                <div class="project">
+                    <h3><a href="https://gocolumbialions.com/news/2019/11/18/no-7-mens-squash-claims-wins-over-fordham-nyu.aspx" target="_blank">Squash</a></h3>
+                    <p>Smacked balls against a wall at nyu</p>
+                </div>
+                <div class="project">
+                    <h3><a href="https://youtu.be/orZdl3KqgzU?si=ODcxpjddljjIJr0T" target="_blank">Music</a></h3>
+                    <p>Piano, Viola, Nujabes</p>
+                </div>
+                <div class="project">
+                    <h3><a href="#">Crypto Miner</a></h3>
+                    <p>Turned our spare room into a sauna with 103 GPUs</p>
+                </div>
+                <div class="project">
+                    <h3><a href="https://www.manutd.com/en/news/detail/cristiano-ronaldo-completes-transfer-to-man-utd-from-juventus" target="_blank">Soccer</a></h3>
+                    <p>August 27, 2021</p>
+                </div>
+                <div class="project">
+                    <h3><a href="https://youtu.be/fSvqhQ7y15w?si=pB008Pyy4HU4d4JW" target="_blank">Valorant</a></h3>
+                    <p>Peaked immortal 2</p>
+                </div>
+                <div class="project">
+                    <h3><a href="https://youtu.be/dQw4w9WgXcQ?si=VgUM-EH1Pmq9cIEn" target="_blank">Skills</a></h3>
+                    <p>LOL you thought i'd list out all the languages and technologies i know. i just wanted to have each column to be the same length.</p>
+                </div>
+            </section>
         </div>
-    </main>
+
+        <section class="section">
+            <p>I try to live life the way Calvin and Hobbes would, so email me at 
+                <a href="mailto:pruthvi.pmr@gmail.com">pruthvi.pmr@gmail.com</a> 
+                or spam the links below if you can relate. 
+                I can send you a resume if you really want.</p>
+        </section>
+
+        <footer>
+            <button id="theme-switcher">Tenma</button>
+            <a href="https://github.com/pruthvipmr" target="_blank">GitHub</a>
+            <a href="https://www.linkedin.com/in/pruthvipmr/" target="_blank">LinkedIn</a>
+            <a href="https://x.com/pruthvi_pmr" target="_blank">Twitter</a>
+        </footer>
+    </div>
 
     <script>
-        const johanLink = document.getElementById('johanLink');
-        const tenmaLink = document.getElementById('tenmaLink');
+        const themeSwitcher = document.getElementById('theme-switcher');
+        const html = document.documentElement;
+        const landingPage = document.getElementById('landing-page');
+        const mainContent = document.getElementById('main-content');
 
-        function toggleTheme() {
-            document.body.classList.toggle('johan');
-            johanLink.classList.toggle('hidden');
-            tenmaLink.classList.toggle('hidden');
-        }
+        themeSwitcher.addEventListener('click', () => {
+            if (html.getAttribute('data-theme') === 'light') {
+                html.setAttribute('data-theme', 'dark');
+                themeSwitcher.textContent = 'Johan';
+            } else {
+                html.setAttribute('data-theme', 'light');
+                themeSwitcher.textContent = 'Tenma';
+            }
+        });
 
-        johanLink.addEventListener('click', toggleTheme);
-        tenmaLink.addEventListener('click', toggleTheme);
+        // Fade out landing page and show main content after 3 seconds
+        setTimeout(() => {
+            landingPage.style.opacity = '0';
+            mainContent.style.opacity = '1';
+            setTimeout(() => {
+                landingPage.style.display = 'none';
+            }, 1000);
+        }, 1500);
     </script>
 </body>
 </html>
