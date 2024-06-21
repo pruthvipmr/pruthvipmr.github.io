@@ -2,8 +2,6 @@
 - Originally I built it in react and had a bunch of pages and a cool navigation pane.
 - But I realized theres too much redudancy.
 - So I scrapped it.
-- Now its a single index.html file. 
-- I'm not a huge fan of the current font, so that'll probably be my next change. 
-
-![image](https://github.com/pruthvipmr/pruthvipmr.github.io/assets/59242803/bf5c45d7-0209-4760-8f55-a5aff84b9e91)
+- Now its a single html/css file. 
+- I'm not a designer AT ALL, but i like simple stuff
 
