@@ -4,11 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>poof</title>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Instrument+Serif&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
-    <!-- Preload critical fonts -->
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Instrument+Serif&display=swap" as="style">
+    <!-- Preload critical resources -->
+    <link rel="preload" href="background.jpeg" as="image">
     <link rel="preload" href="https://fonts.gstatic.com/s/instrumentserif/v3/W3s7qgObHHM4DQejNkXd0bB_J7zdG_W9I5I.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="https://fonts.gstatic.com/s/jetbrainsmono/v18/tDbY2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKxjPVmUsaaDhw.woff2" as="font" type="font/woff2" crossorigin>
+    
+    <!-- Load fonts synchronously to prevent FOUT -->
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Instrument+Serif&display=block" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
     <style>
         :root {
             --bg-color: #F5F5F5;
@@ -34,25 +37,6 @@
             line-height: 1.6;
             transition: background-color var(--transition-duration) ease, color var(--transition-duration) ease;
         }
-        #loading-screen {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: #F5F5F5;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 2000;
-            transition: opacity 0.5s ease-out;
-        }
-        #loading-screen h1 {
-            font-size: 15vw;
-            color: black;
-            font-family: 'Instrument Serif', serif;
-            font-weight: normal;
-        }
         #landing-page {
             position: fixed;
             top: 0;
@@ -67,7 +51,7 @@
             align-items: center;
             z-index: 1000;
             transition: opacity 1s ease-out;
-            opacity: 0;
+            opacity: 1;
         }
         #landing-page h1 {
             font-size: 15vw;
@@ -168,10 +152,6 @@
     </style>
 </head>
 <body>
-    <div id="loading-screen">
-        <h1>POOF</h1>
-    </div>
-
     <div id="landing-page">
         <h1>POOF</h1>
     </div>
@@ -294,60 +274,17 @@
     <script>
         const themeSwitcher = document.getElementById('theme-switcher');
         const html = document.documentElement;
-        const loadingScreen = document.getElementById('loading-screen');
         const landingPage = document.getElementById('landing-page');
         const mainContent = document.getElementById('main-content');
 
-        // Function to proceed with showing content
-        function showContent() {
-            // Hide loading screen and show landing page
-            loadingScreen.style.opacity = '0';
-            landingPage.style.opacity = '1';
-            
-            setTimeout(() => {
-                loadingScreen.style.display = 'none';
-                
-                // Fade out landing page and show main content after 1.5 seconds
-                setTimeout(() => {
-                    landingPage.style.opacity = '0';
-                    mainContent.style.opacity = '1';
-                    setTimeout(() => {
-                        landingPage.style.display = 'none';
-                    }, 1000);
-                }, 1500);
-            }, 500);
-        }
-
-        // Use the Font Loading API to ensure fonts are loaded
-        document.fonts.ready.then(() => {
-            console.log('Fonts loaded');
-            
-            // Preload the background image
-            const img = new Image();
-            img.src = 'background.jpeg';
-            
-            // Wait for the image to load before showing the landing page
-            img.onload = function() {
-                console.log('Background image loaded');
-                showContent();
-            };
-            
-            // If image takes too long to load (over 3 seconds), show the page anyway
-            setTimeout(() => {
-                if (loadingScreen.style.opacity !== '0') {
-                    console.log('Timeout reached, showing content anyway');
-                    showContent();
-                }
-            }, 3000);
-        });
-
-        // Ultimate fallback (fonts AND image taking too long)
+        // After 2 seconds, fade from landing page to main content
         setTimeout(() => {
-            if (loadingScreen.style.opacity !== '0') {
-                console.log('Ultimate fallback triggered');
-                showContent();
-            }
-        }, 5000);
+            landingPage.style.opacity = '0';
+            mainContent.style.opacity = '1';
+            setTimeout(() => {
+                landingPage.style.display = 'none';
+            }, 1000);
+        }, 2000);
 
         themeSwitcher.addEventListener('click', () => {
             if (html.getAttribute('data-theme') === 'light') {
