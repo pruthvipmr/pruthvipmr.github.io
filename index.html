@@ -37,6 +37,14 @@
             line-height: 1.6;
             transition: background-color var(--transition-duration) ease, color var(--transition-duration) ease;
         }
+        ::selection {
+            background-color: #ff4237;
+            color: white;
+        }
+        ::-moz-selection {
+            background-color: #ff4237;
+            color: white;
+        }
         #landing-page {
             position: fixed;
             top: 0;
@@ -79,13 +87,15 @@
             color: var(--text-color);
             font-size: 1em;
             margin-bottom: 1em;
-            font-weight: normal;
+            font-weight: bold;
+            transition: color var(--transition-duration) ease;
         }
         h3 {
             color: var(--text-color);
             font-size: 1em;
             margin-bottom: 1em;
-            font-weight: bold;
+            font-weight: normal;
+            transition: color var(--transition-duration) ease;
         }
         .section {
             margin-bottom: 40px;
@@ -170,7 +180,7 @@
                 <h2>Previously</h2>
                 <div class="project">
                     <h3><a href="https://fintech.gatech.edu/#/" target="_blank">GT FinTech Lab</a></h3>
-                    <p><i>Backtesting</i></p>
+                    <p><i>Research</i>, backtesting</p>
                 </div>
                 <div class="project">
                     <h3><a href="https://www.arbolmarket.com/" target="_blank">Arbol</a></h3>
@@ -250,7 +260,7 @@
                 </div>
                 <div class="project">
                     <h3><a href="https://youtu.be/dQw4w9WgXcQ?si=VgUM-EH1Pmq9cIEn" target="_blank">Skills</a></h3>
-                    <p>LOL you thought I'd list out all the languages I know. I just wanted to have each column to be the same length. Python, C, Triton, PyTorch...</p>
+                    <p>LOL you thought I'd list out all the languages I know. I just wanted to have each column to be the same length. Python, C, PyTorch, Triton, CUDA, PTX...</p>
                 </div>
             </section>
         </div>
@@ -259,7 +269,7 @@
             <p>I'm in the process of building the largest Smiski army the world has ever seen. Email me at 
                 <a href="mailto:pruthvi.pmr@gmail.com">pruthvi.pmr@gmail.com</a> 
                 or spam the links below if you can relate. 
-                I can send you a resume if you really want.</p>
+                I can send you a resume if you really want. Also, I really hate matcha.</p>
         </section>
 
         <footer>
