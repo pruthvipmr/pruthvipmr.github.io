@@ -1,309 +1,468 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en" data-theme="light">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>poof</title>
-    <!-- Preload critical resources -->
-    <link rel="preload" href="background.jpeg" as="image">
-    <link rel="preload" href="https://fonts.gstatic.com/s/instrumentserif/v3/W3s7qgObHHM4DQejNkXd0bB_J7zdG_W9I5I.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="https://fonts.gstatic.com/s/jetbrainsmono/v18/tDbY2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKxjPVmUsaaDhw.woff2" as="font" type="font/woff2" crossorigin>
-    
-    <!-- Load fonts synchronously to prevent FOUT -->
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Instrument+Serif&display=block" rel="stylesheet">
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
-    <style>
-        :root {
-            --bg-color: #F5F5F5;
-            --text-color: #1a1a1a;
-            --dim-text-color: #666;
-            --transition-duration: 0.5s;
-        }
-        [data-theme="dark"] {
-            --bg-color: #1a1a1a;
-            --text-color: #CCD5D6;
-            --dim-text-color: #999;
-        }
-        body, html {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-        }
-        body {
-            font-family: 'JetBrains Mono', monospace;
-            padding: 120px 20px 20px;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            line-height: 1.6;
-            transition: background-color var(--transition-duration) ease, color var(--transition-duration) ease;
-        }
-        ::selection {
-            background-color: #ff4237;
-            color: white;
-        }
-        ::-moz-selection {
-            background-color: #ff4237;
-            color: white;
-        }
-        #landing-page {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url('background.jpeg');
-            background-size: cover;
-            background-position: center;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-            transition: opacity 1s ease-out;
-            opacity: 1;
-        }
-        #landing-page h1 {
-            font-size: 15vw;
-            color: black;
-            /* text-shadow: 2px 2px 4px rgba(0,0,0,0.5); */
-        }
-        #main-content {
-            padding: 20px;
-            max-width: 800px;
-            margin: 0 auto;
-            font-size: 14px;
-            opacity: 0;
-            transition: opacity 1s ease-in;
-        }
-        header {
-            margin-bottom: 40px;
-        }
-        h1 {
-            font-family: 'Instrument Serif', serif;
-            font-weight: normal;
-            font-size: 2.5em;
-            margin: 0;
-        }
-        h2 {
-            color: var(--text-color);
-            font-size: 1em;
-            margin-bottom: 1em;
-            font-weight: bold;
-            transition: color var(--transition-duration) ease;
-        }
-        h3 {
-            color: var(--text-color);
-            font-size: 1em;
-            margin-bottom: 1em;
-            font-weight: normal;
-            transition: color var(--transition-duration) ease;
-        }
-        .section {
-            margin-bottom: 40px;
-        }
-        .main-content {
-            display: flex;
-            gap: 40px;
-        }
-        .column {
-            flex: 1;
-        }
-        .project {
-            margin-bottom: 20px;
-        }
-        .project h3 {
-            margin-bottom: 5px;
-        }
-        .project p {
-            margin-top: 0;
-            color: var(--dim-text-color);
-        }
-        a {
-            color: var(--text-color);
-            text-decoration: underline;
-            text-underline-offset: 2px;
-            /* transition: text-decoration-thickness 0.3s ease; */
-            transition: color var(--transition-duration) ease, text-decoration-thickness 0.3s ease;
-        }
-        a:hover {
-            text-decoration-thickness: 2px;
-        }
-        .project h3 a::after {
-            content: ' →';
-            display: inline-block;
-            margin-left: 4px;
-            transition: transform 0.3s ease;
-            font-weight: 400;
-        }
-        .project h3 a:hover::after {
-            transform: translateX(3px);
-        }
-        footer {
-            margin-top: 40px;
-            padding-top: 20px;
-            border-top: 1px dashed var(--dim-text-color);
-            text-align: center;
-        }
-        footer a, #theme-switcher {
-            margin: 0 10px;
-        }
-        #theme-switcher {
-            background: none;
-            border: none;
-            color: var(--text-color);
-            cursor: pointer;
-            font-family: inherit;
-            font-size: inherit;
-            text-decoration: underline;
-            text-underline-offset: 2px;
-        }
-        #theme-switcher:hover {
-            text-decoration-thickness: 2px;
-        }
-    </style>
-</head>
-<body>
-    <div id="landing-page">
-        <h1>POOF</h1>
-    </div>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>poof</title>
+        <!-- Preload critical resources -->
+        <link rel="preload" href="background.jpeg" as="image" />
+        <link
+            rel="preload"
+            href="https://fonts.gstatic.com/s/instrumentserif/v3/W3s7qgObHHM4DQejNkXd0bB_J7zdG_W9I5I.woff2"
+            as="font"
+            type="font/woff2"
+            crossorigin
+        />
+        <link
+            rel="preload"
+            href="https://fonts.gstatic.com/s/jetbrainsmono/v18/tDbY2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKxjPVmUsaaDhw.woff2"
+            as="font"
+            type="font/woff2"
+            crossorigin
+        />
 
-    <div id="main-content">
-        <header>
-            <h1>Pruthvi Rajaghatta</h1>
-        </header>
-
-        <p>Currently, my day job consists of RLHFT, my personal medallion fund. My nights are spent working on GPU kernels for processing deep space astrophotography.
-           Whatever brain capacity is left goes towards agonizing over Manchester United.
-        </p>
-
-        <div class="main-content">
-            <section class="column">
-                <h2>Previously</h2>
-                <div class="project">
-                    <h3><a href="https://fintech.gatech.edu/#/" target="_blank">GT FinTech Lab</a></h3>
-                    <p><i>Research</i>, backtesting</p>
-                </div>
-                <div class="project">
-                    <h3><a href="https://www.arbolmarket.com/" target="_blank">Arbol</a></h3>
-                    <p><i>Data Scientist</i>, stochastic modelling for natural disasters</p>
-                </div>
-                <div class="project">
-                    <h3><a href="https://www.mathfinancegroup.com/" target="_blank">NYU Math Finance Group</a></h3>
-                    <p><i>Quantitative Trader</i>, ml based strategies</p>
-                </div>
-                <div class="project">
-                    <h3><a href="https://www.cisco.com/site/id/en/products/networking/dna-center-platform/index.html#tabs-a1f7f23988-item-37015237d7-tab" target="_blank">Cisco</a></h3>
-                    <p><i>Data Scientist</i>, product</p>
-                </div>
-                <div class="project">
-                    <h3><a href="https://www.ivoyant.com/digital-transformation/" target="_blank">Ivoyant</a></h3>
-                    <p><i>ML Engineer</i>, churn prediction</p>
-                </div>
-                <div class="project">
-                    <h3><a href="https://liquidmercury.com/" target="_blank">Mercdax</a></h3>
-                    <p><i>Research</i>, blockchain</p>
-                </div>
-                <div class="project">
-                    <h3><a href="https://stanfordhealthcare.org/medical-clinics/byers-eye-institute.html" target="_blank">Stanford Medicine</a></h3>
-                    <p><i>Research</i>, ocular melanomas</p>
-                </div>
-            </section>
-
-            <section class="column">
-                <h2>Projects</h2>
-                <div class="project">
-                    <h3><a href="https://www.rentec.com/Home.action?index=true" target="_blank">RLHFT</a></h3>
-                    <p>RL based algorithmic trading</p>
-                </div>
-                <div class="project">
-                    <h3><a href="https://telescopius.com/astrophotography?order=created_timestamp&page=1" target="_blank">Galactus</a></h3>
-                    <p>Triton kernels for processing astrophotography images</p>
-                </div>
-                <div class="project">
-                    <h3><a href="https://github.com/pruthvipmr/cmdF" target="_blank">Cmd-F</a></h3>
-                    <p>Ctrl-f for Youtube</p>
-                </div>
-                <div class="project">
-                    <h3><a href="https://github.com/pruthvipmr/Poker-Sim" target="_blank">Poker Sim</a></h3>
-                    <p>Poker sim using gto, probabilistic opponent modeling, etc.</p>
-                </div>
-                <div class="project">
-                    <h3><a href="https://github.com/pruthvipmr/baseballsim" target="_blank">Moneyball</a></h3>
-                    <p>Simulate a MLB game with inning-level data and pregame moneyline</p>
-                </div>
-                <div class="project">
-                    <h3><a href="https://github.com/pruthvipmr/expected-goals" target="_blank">xG Analytics</a></h3>
-                    <p>ML pipeline to predict expected goals in soccer</p>
-                </div>
-            </section>
-
-            <section class="column">
-                <h2>Random</h2>
-                <div class="project">
-                    <h3><a href="https://gocolumbialions.com/news/2019/11/18/no-7-mens-squash-claims-wins-over-fordham-nyu.aspx" target="_blank">Squash</a></h3>
-                    <p>Smacked balls against a wall at NYU</p>
-                </div>
-                <div class="project">
-                    <h3><a href="https://youtu.be/orZdl3KqgzU?si=ODcxpjddljjIJr0T" target="_blank">Music</a></h3>
-                    <p>Piano, Viola, Nujabes</p>
-                </div>
-                <div class="project">
-                    <h3><a href="#">Crypto Miner</a></h3>
-                    <p>Turned our spare room into a sauna with 103 GPUs</p>
-                </div>
-                <div class="project">
-                    <h3><a href="https://www.manutd.com/en/news/detail/cristiano-ronaldo-completes-transfer-to-man-utd-from-juventus" target="_blank">Soccer</a></h3>
-                    <p>August 27, 2021</p>
-                </div>
-                <div class="project">
-                    <h3><a href="https://youtu.be/fSvqhQ7y15w?si=pB008Pyy4HU4d4JW" target="_blank">Valorant</a></h3>
-                    <p>Peaked immortal 2</p>
-                </div>
-                <div class="project">
-                    <h3><a href="https://youtu.be/dQw4w9WgXcQ?si=VgUM-EH1Pmq9cIEn" target="_blank">Skills</a></h3>
-                    <p>LOL you thought I'd list out all the languages I know. I just wanted to have each column to be the same length. Python, C, PyTorch, Triton, CUDA, PTX...</p>
-                </div>
-            </section>
+        <!-- Load fonts synchronously to prevent FOUT -->
+        <link
+            href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Instrument+Serif&display=block"
+            rel="stylesheet"
+        />
+        <link rel="icon" type="image/x-icon" href="favicon.ico" />
+        <style>
+            :root {
+                --bg-color: #f5f5f5;
+                --text-color: #1a1a1a;
+                --dim-text-color: #666;
+                --transition-duration: 0.5s;
+            }
+            [data-theme="dark"] {
+                --bg-color: #1a1a1a;
+                --text-color: #ccd5d6;
+                --dim-text-color: #999;
+            }
+            body,
+            html {
+                margin: 0;
+                padding: 0;
+                height: 100%;
+            }
+            body {
+                font-family: "JetBrains Mono", monospace;
+                padding: 120px 20px 20px;
+                background-color: var(--bg-color);
+                color: var(--text-color);
+                line-height: 1.6;
+                transition:
+                    background-color var(--transition-duration) ease,
+                    color var(--transition-duration) ease;
+            }
+            ::selection {
+                background-color: #ff4237;
+                color: white;
+            }
+            ::-moz-selection {
+                background-color: #ff4237;
+                color: white;
+            }
+            #landing-page {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-image: url("background.jpeg");
+                background-size: cover;
+                background-position: center;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                z-index: 1000;
+                transition: opacity 1s ease-out;
+                opacity: 1;
+            }
+            #landing-page h1 {
+                font-size: 15vw;
+                color: black;
+                /* text-shadow: 2px 2px 4px rgba(0,0,0,0.5); */
+            }
+            #main-content {
+                padding: 20px;
+                max-width: 800px;
+                margin: 0 auto;
+                font-size: 14px;
+                opacity: 0;
+                transition: opacity 1s ease-in;
+            }
+            header {
+                margin-bottom: 40px;
+            }
+            h1 {
+                font-family: "Instrument Serif", serif;
+                font-weight: normal;
+                font-size: 2.5em;
+                margin: 0;
+            }
+            h2 {
+                color: var(--text-color);
+                font-size: 1em;
+                margin-bottom: 1em;
+                font-weight: bold;
+                transition: color var(--transition-duration) ease;
+            }
+            h3 {
+                color: var(--text-color);
+                font-size: 1em;
+                margin-bottom: 1em;
+                font-weight: normal;
+                transition: color var(--transition-duration) ease;
+            }
+            .section {
+                margin-bottom: 40px;
+            }
+            .main-content {
+                display: flex;
+                gap: 40px;
+            }
+            .column {
+                flex: 1;
+            }
+            .project {
+                margin-bottom: 20px;
+            }
+            .project h3 {
+                margin-bottom: 5px;
+            }
+            .project p {
+                margin-top: 0;
+                color: var(--dim-text-color);
+            }
+            a {
+                color: var(--text-color);
+                text-decoration: underline;
+                text-underline-offset: 2px;
+                /* transition: text-decoration-thickness 0.3s ease; */
+                transition:
+                    color var(--transition-duration) ease,
+                    text-decoration-thickness 0.3s ease;
+            }
+            a:hover {
+                text-decoration-thickness: 2px;
+            }
+            .project h3 a::after {
+                content: " →";
+                display: inline-block;
+                margin-left: 4px;
+                transition: transform 0.3s ease;
+                font-weight: 400;
+            }
+            .project h3 a:hover::after {
+                transform: translateX(3px);
+            }
+            footer {
+                margin-top: 40px;
+                padding-top: 20px;
+                border-top: 1px dashed var(--dim-text-color);
+                text-align: center;
+            }
+            footer a,
+            #theme-switcher {
+                margin: 0 10px;
+            }
+            #theme-switcher {
+                background: none;
+                border: none;
+                color: var(--text-color);
+                cursor: pointer;
+                font-family: inherit;
+                font-size: inherit;
+                text-decoration: underline;
+                text-underline-offset: 2px;
+            }
+            #theme-switcher:hover {
+                text-decoration-thickness: 2px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="landing-page">
+            <h1>POOF</h1>
         </div>
 
-        <section class="section">
-            <p>I'm in the process of building the largest Smiski army the world has ever seen. Email me at 
-                <a href="mailto:pruthvi.pmr@gmail.com">pruthvi.pmr@gmail.com</a> 
-                or spam the links below if you can relate. 
-                I can send you a resume if you really want. Also, I really hate matcha.</p>
-        </section>
+        <div id="main-content">
+            <header>
+                <h1>Pruthvi Rajaghatta</h1>
+            </header>
 
-        <footer>
-            <button id="theme-switcher">Tenma</button>
-            <a href="https://github.com/pruthvipmr" target="_blank">GitHub</a>
-            <a href="https://www.linkedin.com/in/pruthvipmr/" target="_blank">LinkedIn</a>
-            <a href="https://x.com/pruthvi_pmr" target="_blank">Twitter</a>
-        </footer>
-    </div>
+            <p>
+                Currently, my day job consists of RLHFT, my personal medallion
+                fund. My nights are spent working on GPU kernels for processing
+                deep space astrophotography. Whatever brain capacity is left
+                goes towards agonizing over Manchester United.
+            </p>
 
-    <script>
-        const themeSwitcher = document.getElementById('theme-switcher');
-        const html = document.documentElement;
-        const landingPage = document.getElementById('landing-page');
-        const mainContent = document.getElementById('main-content');
+            <div class="main-content">
+                <section class="column">
+                    <h2>Previously</h2>
+                    <div class="project">
+                        <h3>
+                            <a
+                                href="https://fintech.gatech.edu/#/"
+                                target="_blank"
+                                >GT FinTech Lab</a
+                            >
+                        </h3>
+                        <p><i>Research</i>, backtesting</p>
+                    </div>
+                    <div class="project">
+                        <h3>
+                            <a
+                                href="https://www.arbolmarket.com/"
+                                target="_blank"
+                                >Arbol</a
+                            >
+                        </h3>
+                        <p>
+                            <i>Data Scientist</i>, stochastic modelling for
+                            natural disasters
+                        </p>
+                    </div>
+                    <div class="project">
+                        <h3>
+                            <a
+                                href="https://www.mathfinancegroup.com/"
+                                target="_blank"
+                                >NYU Math Finance Group</a
+                            >
+                        </h3>
+                        <p><i>Quantitative Trader</i>, ml based strategies</p>
+                    </div>
+                    <div class="project">
+                        <h3>
+                            <a
+                                href="https://www.cisco.com/site/id/en/products/networking/dna-center-platform/index.html#tabs-a1f7f23988-item-37015237d7-tab"
+                                target="_blank"
+                                >Cisco</a
+                            >
+                        </h3>
+                        <p><i>Data Scientist</i>, product</p>
+                    </div>
+                    <div class="project">
+                        <h3>
+                            <a
+                                href="https://www.ivoyant.com/digital-transformation/"
+                                target="_blank"
+                                >Ivoyant</a
+                            >
+                        </h3>
+                        <p><i>ML Engineer</i>, churn</p>
+                    </div>
+                    <div class="project">
+                        <h3>
+                            <a href="https://liquidmercury.com/" target="_blank"
+                                >Mercdax</a
+                            >
+                        </h3>
+                        <p><i>Research</i>, blockchain</p>
+                    </div>
+                    <!-- <div class="project">
+                        <h3>
+                            <a
+                                href="https://stanfordhealthcare.org/medical-clinics/byers-eye-institute.html"
+                                target="_blank"
+                                >Stanford Medicine</a
+                            >
+                        </h3>
+                        <p><i>Research</i>, ocular melanomas</p>
+                    </div> -->
+                </section>
 
-        // After 2 seconds, fade from landing page to main content
-        setTimeout(() => {
-            landingPage.style.opacity = '0';
-            mainContent.style.opacity = '1';
+                <section class="column">
+                    <h2>Projects</h2>
+                    <div class="project">
+                        <h3>
+                            <a
+                                href="https://www.rentec.com/Home.action?index=true"
+                                target="_blank"
+                                >Forest</a
+                            >
+                        </h3>
+                        <p>RL environments for algorithmic trading</p>
+                    </div>
+                    <div class="project">
+                        <h3>
+                            <a
+                                href="https://telescopius.com/astrophotography?order=created_timestamp&page=1"
+                                target="_blank"
+                                >Galactus</a
+                            >
+                        </h3>
+                        <p>
+                            Triton kernels for processing astrophotography
+                            images
+                        </p>
+                    </div>
+                    <div class="project">
+                        <h3>
+                            <a
+                                href="https://github.com/pruthvipmr/mlx-baselines3"
+                                target="_blank"
+                                >MLX-Baselines3</a
+                            >
+                        </h3>
+                        <p>RL algorithms in MLX</p>
+                    </div>
+                    <div class="project">
+                        <h3>
+                            <a
+                                href="https://github.com/pruthvipmr/Poker-Sim"
+                                target="_blank"
+                                >Poker Sim</a
+                            >
+                        </h3>
+                        <p>
+                            Poker sim using gto, probabilistic opponent
+                            modeling, etc.
+                        </p>
+                    </div>
+                    <!-- <div class="project">
+                        <h3>
+                            <a
+                                href="https://github.com/pruthvipmr/baseballsim"
+                                target="_blank"
+                                >Moneyball</a
+                            >
+                        </h3>
+                        <p>Simulate a MLB game with inning-level data</p>
+                    </div> -->
+                    <div class="project">
+                        <h3>
+                            <a
+                                href="https://github.com/pruthvipmr/expected-goals"
+                                target="_blank"
+                                >xG Analytics</a
+                            >
+                        </h3>
+                        <p>ML pipeline to predict expected goals in soccer</p>
+                    </div>
+                </section>
+
+                <section class="column">
+                    <h2>Random</h2>
+                    <div class="project">
+                        <h3>
+                            <a
+                                href="https://gocolumbialions.com/news/2019/11/18/no-7-mens-squash-claims-wins-over-fordham-nyu.aspx"
+                                target="_blank"
+                                >Squash</a
+                            >
+                        </h3>
+                        <p>Smacked balls against a wall at NYU</p>
+                    </div>
+                    <div class="project">
+                        <h3>
+                            <a
+                                href="https://youtu.be/orZdl3KqgzU?si=ODcxpjddljjIJr0T"
+                                target="_blank"
+                                >Music</a
+                            >
+                        </h3>
+                        <p>Piano, Viola, Nujabes</p>
+                    </div>
+                    <div class="project">
+                        <h3><a href="#">Crypto Miner</a></h3>
+                        <p>Turned our spare room into a sauna with 103 GPUs</p>
+                    </div>
+                    <div class="project">
+                        <h3>
+                            <a
+                                href="https://www.manutd.com/en/news/detail/cristiano-ronaldo-completes-transfer-to-man-utd-from-juventus"
+                                target="_blank"
+                                >Soccer</a
+                            >
+                        </h3>
+                        <p>August 27, 2021</p>
+                    </div>
+                    <div class="project">
+                        <h3>
+                            <a
+                                href="https://youtu.be/fSvqhQ7y15w?si=pB008Pyy4HU4d4JW"
+                                target="_blank"
+                                >Valorant</a
+                            >
+                        </h3>
+                        <p>Peaked immortal 2</p>
+                    </div>
+                    <div class="project">
+                        <h3>
+                            <a
+                                href="https://youtu.be/dQw4w9WgXcQ?si=VgUM-EH1Pmq9cIEn"
+                                target="_blank"
+                                >Skills</a
+                            >
+                        </h3>
+                        <p>
+                            All I need to cure cancer is
+                            <a href="https://docs.astral.sh/uv/" target="_blank"
+                                >uv</a
+                            >
+                            and
+                            <a href="https://ampcode.com/" target="_blank"
+                                >amp</a
+                            >.
+                        </p>
+                    </div>
+                </section>
+            </div>
+
+            <section class="section">
+                <p>
+                    I'm in the process of building the largest Smiski army the
+                    world has ever seen. Email me at
+                    <a href="mailto:pruthvi.pmr@gmail.com"
+                        >pruthvi.pmr@gmail.com</a
+                    >
+                    or spam the links below if you can relate. I can send you a
+                    resume if you want. Also, I really hate matcha.
+                </p>
+            </section>
+
+            <footer>
+                <button id="theme-switcher">Tenma</button>
+                <a href="https://github.com/pruthvipmr" target="_blank"
+                    >GitHub</a
+                >
+                <a
+                    href="https://www.linkedin.com/in/pruthvipmr/"
+                    target="_blank"
+                    >LinkedIn</a
+                >
+                <a href="https://x.com/pruthvi_pmr" target="_blank">Twitter</a>
+            </footer>
+        </div>
+
+        <script>
+            const themeSwitcher = document.getElementById("theme-switcher");
+            const html = document.documentElement;
+            const landingPage = document.getElementById("landing-page");
+            const mainContent = document.getElementById("main-content");
+
+            // After 2 seconds, fade from landing page to main content
             setTimeout(() => {
-                landingPage.style.display = 'none';
-            }, 1000);
-        }, 2000);
+                landingPage.style.opacity = "0";
+                mainContent.style.opacity = "1";
+                setTimeout(() => {
+                    landingPage.style.display = "none";
+                }, 1000);
+            }, 2000);
 
-        themeSwitcher.addEventListener('click', () => {
-            if (html.getAttribute('data-theme') === 'light') {
-                html.setAttribute('data-theme', 'dark');
-                themeSwitcher.textContent = 'Johan';
-            } else {
-                html.setAttribute('data-theme', 'light');
-                themeSwitcher.textContent = 'Tenma';
-            }
-        });
-    </script>
-</body>
+            themeSwitcher.addEventListener("click", () => {
+                if (html.getAttribute("data-theme") === "light") {
+                    html.setAttribute("data-theme", "dark");
+                    themeSwitcher.textContent = "Johan";
+                } else {
+                    html.setAttribute("data-theme", "light");
+                    themeSwitcher.textContent = "Tenma";
+                }
+            });
+        </script>
+    </body>
 </html>
