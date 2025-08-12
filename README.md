@@ -1,7 +1,1 @@
-- This is my personal website.
-- Originally I built it in react and had a bunch of pages and a cool navigation pane.
-- But I realized theres too much redudancy.
-- So I scrapped it.
-- Now its a single html/css file. 
-- I'm not a designer AT ALL, but i like simple stuff
-
+<img width="1450" height="821" alt="sneekpeak" src="https://github.com/user-attachments/assets/bfefa831-58e8-4597-ae97-32ecf51ef27d" />
