@@ -81,7 +81,7 @@
                 align-items: center;
                 z-index: 1000;
                 transition: opacity 1s ease-out;
-                opacity: 1;
+                opacity: 0;
             }
             #landing-page h1 {
                 font-size: 15vw;
@@ -442,14 +442,22 @@
             const landingPage = document.getElementById("landing-page");
             const mainContent = document.getElementById("main-content");
 
-            // After 2 seconds, fade from landing page to main content
-            setTimeout(() => {
-                landingPage.style.opacity = "0";
-                mainContent.style.opacity = "1";
+            // Wait for background image to load before showing landing page
+            const backgroundImg = new Image();
+            backgroundImg.onload = () => {
+                // Show landing page once background image is loaded
+                landingPage.style.opacity = "1";
+                
+                // After 2 seconds, fade from landing page to main content
                 setTimeout(() => {
-                    landingPage.style.display = "none";
-                }, 1000);
-            }, 2000);
+                    landingPage.style.opacity = "0";
+                    mainContent.style.opacity = "1";
+                    setTimeout(() => {
+                        landingPage.style.display = "none";
+                    }, 1000);
+                }, 2000);
+            };
+            backgroundImg.src = "background.jpeg";
 
             themeSwitcher.addEventListener("click", () => {
                 if (html.getAttribute("data-theme") === "light") {
