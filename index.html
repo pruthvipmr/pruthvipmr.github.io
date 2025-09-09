@@ -184,6 +184,80 @@
             #theme-switcher:hover {
                 text-decoration-thickness: 2px;
             }
+            
+            /* Mobile responsive styles */
+            @media (max-width: 768px) {
+                body {
+                    padding: 60px 15px 15px;
+                    font-size: 13px;
+                }
+                
+                #landing-page h1 {
+                    font-size: 20vw;
+                }
+                
+                #main-content {
+                    padding: 15px;
+                }
+                
+                h1 {
+                    font-size: 2em;
+                }
+                
+                .main-content {
+                    flex-direction: column;
+                    gap: 30px;
+                }
+                
+                .column {
+                    flex: none;
+                }
+                
+                .section {
+                    margin-bottom: 30px;
+                }
+                
+                .project {
+                    margin-bottom: 15px;
+                }
+                
+                footer {
+                    margin-top: 30px;
+                }
+                
+                footer a,
+                #theme-switcher {
+                    margin: 5px;
+                    display: inline-block;
+                }
+            }
+            
+            @media (max-width: 480px) {
+                body {
+                    padding: 40px 10px 10px;
+                    font-size: 12px;
+                }
+                
+                #main-content {
+                    padding: 10px;
+                }
+                
+                h1 {
+                    font-size: 1.8em;
+                }
+                
+                .main-content {
+                    gap: 25px;
+                }
+                
+                .section {
+                    margin-bottom: 25px;
+                }
+                
+                .project {
+                    margin-bottom: 12px;
+                }
+            }
         </style>
     </head>
     <body>
