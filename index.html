@@ -32,7 +32,7 @@
                 --bg-color: #f5f5f5;
                 --text-color: #1a1a1a;
                 --dim-text-color: #666;
-                --selection-bg-color: #FFF7AB;
+                --selection-bg-color: #fff7ab;
                 --selection-text-color: black;
                 --transition-duration: 0.5s;
             }
@@ -40,7 +40,7 @@
                 --bg-color: #1a1a1a;
                 --text-color: #ccd5d6;
                 --dim-text-color: #999;
-                --selection-bg-color: #7885FF;
+                --selection-bg-color: #7885ff;
                 --selection-text-color: #ccd5d6;
             }
             body,
@@ -184,78 +184,119 @@
             #theme-switcher:hover {
                 text-decoration-thickness: 2px;
             }
-            
+
             /* Mobile responsive styles */
             @media (max-width: 768px) {
                 body {
                     padding: 60px 15px 15px;
                     font-size: 13px;
                 }
-                
+
                 #landing-page h1 {
                     font-size: 20vw;
                 }
-                
+
                 #main-content {
                     padding: 15px;
                 }
-                
+
                 h1 {
                     font-size: 2em;
                 }
-                
+
                 .main-content {
                     flex-direction: column;
                     gap: 30px;
                 }
-                
+
                 .column {
                     flex: none;
                 }
-                
+
                 .section {
                     margin-bottom: 30px;
                 }
-                
+
                 .project {
                     margin-bottom: 15px;
                 }
-                
+
                 footer {
                     margin-top: 30px;
                 }
-                
+
                 footer a,
                 #theme-switcher {
                     margin: 5px;
                     display: inline-block;
                 }
             }
-            
+
             @media (max-width: 480px) {
                 body {
                     padding: 40px 10px 10px;
                     font-size: 12px;
                 }
-                
+
                 #main-content {
                     padding: 10px;
                 }
-                
+
                 h1 {
                     font-size: 1.8em;
                 }
-                
+
                 .main-content {
                     gap: 25px;
                 }
-                
+
                 .section {
                     margin-bottom: 25px;
                 }
-                
+
                 .project {
                     margin-bottom: 12px;
+                }
+            }
+
+            /* Mobile landscape orientation */
+            @media (max-height: 480px) and (orientation: landscape) {
+                body {
+                    padding: 30px 15px 15px;
+                    font-size: 13px;
+                }
+
+                #main-content {
+                    padding: 15px;
+                }
+
+                h1 {
+                    font-size: 2em;
+                }
+
+                .main-content {
+                    gap: 25px;
+                }
+
+                .section {
+                    margin-bottom: 25px;
+                }
+
+                .project {
+                    margin-bottom: 12px;
+                }
+
+                .project p {
+                    font-size: 13px;
+                }
+
+                h2,
+                h3 {
+                    font-size: 13px;
+                }
+
+                footer {
+                    margin-top: 25px;
                 }
             }
         </style>
@@ -477,9 +518,7 @@
                                 >Skills</a
                             >
                         </h3>
-                        <p>
-                            All I need to cure cancer is uv and ampcode
-                        </p>
+                        <p>All I need to cure cancer is uv and ampcode</p>
                     </div>
                 </section>
             </div>
@@ -521,7 +560,7 @@
             backgroundImg.onload = () => {
                 // Show landing page once background image is loaded
                 landingPage.style.opacity = "1";
-                
+
                 // After 2 seconds, fade from landing page to main content
                 setTimeout(() => {
                     landingPage.style.opacity = "0";
