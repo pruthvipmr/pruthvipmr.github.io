@@ -164,6 +164,32 @@
             a:hover {
                 text-decoration-thickness: 2px;
             }
+            .copy-link {
+                position: relative;
+                display: inline-block;
+                cursor: pointer;
+            }
+            .copy-toast {
+                position: absolute;
+                top: 1.7em;
+                left: 50%;
+                transform: translateX(-50%);
+                pointer-events: none;
+                opacity: 0;
+                transition:
+                    opacity 0.2s ease,
+                    transform 0.2s ease;
+                padding: 2px 8px;
+                border-radius: 999px;
+                background: var(--text-color);
+                color: var(--bg-color);
+                font-size: 11px;
+                white-space: nowrap;
+            }
+            .copy-toast.show {
+                opacity: 1;
+                transform: translateX(-50%) translateY(4px);
+            }
             .project h3 a::after {
                 content: " →";
                 display: inline-block;
@@ -507,12 +533,23 @@
             </div>
 
             <section class="section">
-                <p>
+                    <p>
                     I'm in the process of building the largest Smiski army the
                     world has ever seen. Email me at
-                    <a href="mailto:pruthvi.pmr@gmail.com"
-                        >pruthvi.pmr@gmail.com</a
+                    <a
+                        href="#"
+                        id="email-copy-link"
+                        class="copy-link"
+                        aria-label="Copy email address"
                     >
+                        pruthvi.pmr@gmail.com
+                        <span
+                            id="email-copy-toast"
+                            class="copy-toast"
+                            aria-live="polite"
+                            >copied</span
+                        >
+                    </a>
                     or spam the links below if you can relate.
                 </p>
             </section>
@@ -536,6 +573,43 @@
             const html = document.documentElement;
             const landingPage = document.getElementById("landing-page");
             const mainContent = document.getElementById("main-content");
+            const emailCopyLink = document.getElementById("email-copy-link");
+            const emailCopyToast = document.getElementById("email-copy-toast");
+            const emailAddress = "pruthvi.pmr@gmail.com";
+            let emailCopyTimeout;
+
+            function showEmailCopyToast() {
+                emailCopyToast.classList.add("show");
+                clearTimeout(emailCopyTimeout);
+                emailCopyTimeout = setTimeout(() => {
+                    emailCopyToast.classList.remove("show");
+                }, 1200);
+            }
+
+            async function copyEmailToClipboard() {
+                if (navigator.clipboard?.writeText) {
+                    await navigator.clipboard.writeText(emailAddress);
+                    return;
+                }
+                const textArea = document.createElement("textarea");
+                textArea.value = emailAddress;
+                textArea.style.position = "fixed";
+                textArea.style.opacity = "0";
+                document.body.appendChild(textArea);
+                textArea.focus();
+                textArea.select();
+                document.execCommand("copy");
+                document.body.removeChild(textArea);
+            }
+
+            emailCopyLink.addEventListener("click", (event) => {
+                event.preventDefault();
+                copyEmailToClipboard()
+                    .then(() => {
+                        showEmailCopyToast();
+                    })
+                    .catch(() => {});
+            });
 
             // Wait for background image to load before showing landing page
             const backgroundImg = new Image();
