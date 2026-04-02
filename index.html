@@ -18,17 +18,16 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>poof</title>
         <!-- Preload critical resources -->
-        <link rel="preload" href="background.jpeg" as="image" />
         <link
             rel="preload"
-            href="https://fonts.gstatic.com/s/instrumentserif/v3/W3s7qgObHHM4DQejNkXd0bB_J7zdG_W9I5I.woff2"
+            href="https://fonts.gstatic.com/s/geist/v4/gyBhhwUxId8gMGYQMKR3pzfaWI_RnOM4nQ.ttf"
             as="font"
-            type="font/woff2"
+            type="font/ttf"
             crossorigin
         />
         <link
             rel="preload"
-            href="https://fonts.gstatic.com/s/geistmono/v1/gyB4hws1JdgnKy56GB825a1KKXdYyOcdGM0Drt0uAQOWYtGFM.woff2"
+            href="https://fonts.gstatic.com/s/instrumentserif/v5/Y4GTYaN0-RNfRzLq6o2vCkQ.woff2"
             as="font"
             type="font/woff2"
             crossorigin
@@ -36,7 +35,7 @@
 
         <!-- Load fonts synchronously to prevent FOUT -->
         <link
-            href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;700&family=Instrument+Serif&display=block"
+            href="https://fonts.googleapis.com/css2?family=Geist:wght@400;700&family=Instrument+Serif&display=block"
             rel="stylesheet"
         />
         <link rel="icon" type="image/x-icon" href="favicon.ico" />
@@ -53,7 +52,7 @@
                 --bg-color: #1a1a1a;
                 --text-color: #ccd5d6;
                 --dim-text-color: #999;
-                --selection-bg-color: #7885ff;
+                --selection-bg-color: #777db2;
                 --selection-text-color: #ccd5d6;
             }
             body,
@@ -63,7 +62,7 @@
                 height: 100%;
             }
             body {
-                font-family: "Geist Mono", monospace;
+                font-family: "Geist", sans-serif;
                 padding: 120px 20px 20px;
                 background-color: var(--bg-color);
                 color: var(--text-color);
@@ -80,37 +79,15 @@
                 background-color: var(--selection-bg-color);
                 color: var(--selection-text-color);
             }
-            #landing-page {
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background-image: url("background.jpeg");
-                background-size: cover;
-                background-position: center;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                z-index: 1000;
-                transition: opacity 1s ease-out;
-                opacity: 0;
-            }
-            #landing-page h1 {
-                font-size: 15vw;
-                color: black;
-                /* text-shadow: 2px 2px 4px rgba(0,0,0,0.5); */
-            }
             #main-content {
                 padding: 20px;
-                max-width: 800px;
+                max-width: 640px;
                 margin: 0 auto;
-                font-size: 14px;
-                opacity: 0;
-                transition: opacity 1s ease-in;
+                font-size: 15px;
+                opacity: 1;
             }
             header {
-                margin-bottom: 40px;
+                margin-bottom: 30px;
             }
             h1 {
                 font-family: "Instrument Serif", serif;
@@ -133,7 +110,7 @@
                 transition: color var(--transition-duration) ease;
             }
             .section {
-                margin-bottom: 40px;
+                margin-bottom: 16px;
             }
             .main-content {
                 display: flex;
@@ -201,14 +178,18 @@
                 transform: translateX(3px);
             }
             footer {
-                margin-top: 40px;
+                margin-top: 20px;
                 padding-top: 20px;
                 border-top: 1px dashed var(--dim-text-color);
-                text-align: center;
+                text-align: left;
+                display: flex;
+                flex-wrap: wrap;
+                gap: 10px;
+                align-items: center;
             }
             footer a,
             #theme-switcher {
-                margin: 0 10px;
+                margin: 0;
             }
             #theme-switcher {
                 background: none;
@@ -217,6 +198,8 @@
                 cursor: pointer;
                 font-family: inherit;
                 font-size: inherit;
+                line-height: inherit;
+                padding: 0;
                 text-decoration: underline;
                 text-underline-offset: 2px;
             }
@@ -229,10 +212,6 @@
                 body {
                     padding: 60px 15px 15px;
                     font-size: 13px;
-                }
-
-                #landing-page h1 {
-                    font-size: 20vw;
                 }
 
                 #main-content {
@@ -253,7 +232,7 @@
                 }
 
                 .section {
-                    margin-bottom: 30px;
+                    margin-bottom: 16px;
                 }
 
                 .project {
@@ -261,13 +240,7 @@
                 }
 
                 footer {
-                    margin-top: 30px;
-                }
-
-                footer a,
-                #theme-switcher {
-                    margin: 5px;
-                    display: inline-block;
+                    margin-top: 16px;
                 }
             }
 
@@ -290,7 +263,7 @@
                 }
 
                 .section {
-                    margin-bottom: 25px;
+                    margin-bottom: 16px;
                 }
 
                 .project {
@@ -318,7 +291,7 @@
                 }
 
                 .section {
-                    margin-bottom: 25px;
+                    margin-bottom: 16px;
                 }
 
                 .project {
@@ -335,141 +308,29 @@
                 }
 
                 footer {
-                    margin-top: 25px;
+                    margin-top: 16px;
                 }
             }
         </style>
     </head>
     <body>
-        <div id="landing-page">
-            <h1>POOF</h1>
-        </div>
-
         <div id="main-content">
             <header>
                 <h1>Pruthvi Rajaghatta</h1>
             </header>
 
             <p>
-                Currently, I'm Head of Research at
-                <a href="https://hillclimb.ing" target="_blank">Hillclimb</a>,
-                where I teach language models good research taste. Most
-                recently, I worked on scalable RL systems for algorithmic
-                trading.
+                Currently, I'm the Head of Research at
+                <a href="https://hillclimb.com" target="_blank">Hillclimb</a>.
+                We provide training data for recursive self-improvement. We're
+                hiring :)
             </p>
 
-            <div class="main-content">
-                <section class="column">
-                    <h2>Previously</h2>
-
-                    <div class="project">
-                        <h3>
-                            <a
-                                href="https://fintech.gatech.edu/#/"
-                                target="_blank"
-                                >GT FinTech Lab</a
-                            >
-                        </h3>
-                        <p><i>Research</i>, backtesting</p>
-                    </div>
-                    <div class="project">
-                        <h3>
-                            <a
-                                href="https://www.arbolmarket.com/"
-                                target="_blank"
-                                >Arbol</a
-                            >
-                        </h3>
-                        <p>
-                            <i>Data Scientist</i>, stochastic modelling for
-                            natural disasters
-                        </p>
-                    </div>
-                    <div class="project">
-                        <h3>
-                            <a
-                                href="https://www.mathfinancegroup.com/"
-                                target="_blank"
-                                >NYU Math Finance Group</a
-                            >
-                        </h3>
-                        <p><i>Quantitative Trader</i>, ml based strategies</p>
-                    </div>
-                    <div class="project">
-                        <h3>
-                            <a
-                                href="https://www.cisco.com/site/id/en/products/networking/dna-center-platform/index.html#tabs-a1f7f23988-item-37015237d7-tab"
-                                target="_blank"
-                                >Cisco</a
-                            >
-                        </h3>
-                        <p>
-                            <i>Data Scientist</i>, product analytics and revenue
-                            forecasting
-                        </p>
-                    </div>
-                    <div class="project">
-                        <h3>
-                            <a
-                                href="https://www.ivoyant.com/digital-transformation/"
-                                target="_blank"
-                                >Ivoyant</a
-                            >
-                        </h3>
-                        <p><i>ML Engineer</i>, churn</p>
-                    </div>
-                </section>
-
-                <section class="column">
-                    <h2>Random</h2>
-                    <div class="project">
-                        <h3>
-                            <a
-                                href="https://gocolumbialions.com/news/2019/11/18/no-7-mens-squash-claims-wins-over-fordham-nyu.aspx"
-                                target="_blank"
-                                >Squash</a
-                            >
-                        </h3>
-                        <p>Smacked balls against a wall at NYU</p>
-                    </div>
-                    <div class="project">
-                        <h3>
-                            <a
-                                href="https://youtu.be/orZdl3KqgzU?si=ODcxpjddljjIJr0T"
-                                target="_blank"
-                                >Music</a
-                            >
-                        </h3>
-                        <p>Piano, Viola, Nujabes</p>
-                    </div>
-                    <div class="project">
-                        <h3><a href="#">Crypto Miner</a></h3>
-                        <p>103 GPUs and a dream</p>
-                    </div>
-                    <div class="project">
-                        <h3>
-                            <a
-                                href="https://www.manutd.com/en/news/detail/cristiano-ronaldo-completes-transfer-to-man-utd-from-juventus"
-                                target="_blank"
-                                >Soccer</a
-                            >
-                        </h3>
-                        <p>
-                            My mental health is heavily dependent on Man United
-                        </p>
-                    </div>
-                    <div class="project">
-                        <h3>
-                            <a
-                                href="https://youtu.be/dQw4w9WgXcQ?si=VgUM-EH1Pmq9cIEn"
-                                target="_blank"
-                                >Skills</a
-                            >
-                        </h3>
-                        <p>I don't believe in much, but I do believe in uv</p>
-                    </div>
-                </section>
-            </div>
+            <p>
+                In a previous life, I worked on scalable RL systems for
+                algorithmic trading and also modeled natural catastrophes for
+                parametric insurance.
+            </p>
 
             <section class="section">
                 <p>
@@ -509,8 +370,6 @@
         <script>
             const themeSwitcher = document.getElementById("theme-switcher");
             const html = document.documentElement;
-            const landingPage = document.getElementById("landing-page");
-            const mainContent = document.getElementById("main-content");
             const emailCopyLink = document.getElementById("email-copy-link");
             const emailCopyToast = document.getElementById("email-copy-toast");
             const emailAddress = "pruthvi.pmr@gmail.com";
@@ -548,23 +407,6 @@
                     })
                     .catch(() => {});
             });
-
-            // Wait for background image to load before showing landing page
-            const backgroundImg = new Image();
-            backgroundImg.onload = () => {
-                // Show landing page once background image is loaded
-                landingPage.style.opacity = "1";
-
-                // After 2 seconds, fade from landing page to main content
-                setTimeout(() => {
-                    landingPage.style.opacity = "0";
-                    mainContent.style.opacity = "1";
-                    setTimeout(() => {
-                        landingPage.style.display = "none";
-                    }, 1000);
-                }, 2000);
-            };
-            backgroundImg.src = "background.jpeg";
 
             themeSwitcher.addEventListener("click", () => {
                 if (html.getAttribute("data-theme") === "light") {
