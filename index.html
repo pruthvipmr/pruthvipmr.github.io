@@ -42,6 +42,7 @@
         <style>
             :root {
                 --bg-color: #f5f5f5;
+                --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25'%3E%3Cfilter id='n' x='0' y='0' width='100%25' height='100%25' color-interpolation-filters='sRGB'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.25 1.25' numOctaves='3' seed='5570' stitchTiles='stitch' result='noise'/%3E%3CfeColorMatrix in='noise' type='luminanceToAlpha' result='alphaNoise'/%3E%3CfeComponentTransfer in='alphaNoise' result='coloredNoise'%3E%3CfeFuncA type='discrete' tableValues='1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0'/%3E%3C/feComponentTransfer%3E%3CfeFlood flood-color='rgba(0,0,0,0.25)' result='colorFlood'/%3E%3CfeComposite operator='in' in='colorFlood' in2='coloredNoise'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
                 --text-color: #1a1a1a;
                 --dim-text-color: #666;
                 --selection-bg-color: #fff7ab;
@@ -50,6 +51,7 @@
             }
             [data-theme="dark"] {
                 --bg-color: #1a1a1a;
+                --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25'%3E%3Cfilter id='n' x='0' y='0' width='100%25' height='100%25' color-interpolation-filters='sRGB'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.25 1.25' numOctaves='3' seed='5570' stitchTiles='stitch' result='noise'/%3E%3CfeColorMatrix in='noise' type='luminanceToAlpha' result='alphaNoise'/%3E%3CfeComponentTransfer in='alphaNoise' result='coloredNoise'%3E%3CfeFuncA type='discrete' tableValues='1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0'/%3E%3C/feComponentTransfer%3E%3CfeFlood flood-color='rgba(255,255,255,0.25)' result='colorFlood'/%3E%3CfeComposite operator='in' in='colorFlood' in2='coloredNoise'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
                 --text-color: #ccd5d6;
                 --dim-text-color: #999;
                 --selection-bg-color: #777db2;
@@ -70,6 +72,18 @@
                 transition:
                     background-color var(--transition-duration) ease,
                     color var(--transition-duration) ease;
+            }
+            /* Static paper grain from alex_landing's Design 2. */
+            body::after {
+                content: "";
+                position: fixed;
+                inset: 0;
+                z-index: 40;
+                opacity: 0.3;
+                pointer-events: none;
+                background-image: var(--grain);
+                background-repeat: no-repeat;
+                background-size: 100% 100%;
             }
             ::selection {
                 background-color: var(--selection-bg-color);
@@ -93,6 +107,7 @@
                 font-family: "Instrument Serif", serif;
                 font-weight: normal;
                 font-size: 2.5em;
+                letter-spacing: 0.04em;
                 margin: 0;
             }
             h2 {
@@ -202,6 +217,7 @@
                 padding: 0;
                 text-decoration: underline;
                 text-underline-offset: 2px;
+                transition: color var(--transition-duration) ease;
             }
             #theme-switcher:hover {
                 text-decoration-thickness: 2px;
@@ -322,8 +338,7 @@
             <p>
                 Currently, I'm the CTO at
                 <a href="https://hillclimb.com" target="_blank">Hillclimb</a>.
-                We provide training data for recursive self-improvement. We're
-                hiring :)
+                We provide training data for recursive self-improvement.
             </p>
 
             <p>
@@ -354,7 +369,6 @@
             </section>
 
             <footer>
-                <button id="theme-switcher">Tenma</button>
                 <a href="https://github.com/pruthvipmr" target="_blank"
                     >GitHub</a
                 >
@@ -364,6 +378,7 @@
                     >LinkedIn</a
                 >
                 <a href="https://x.com/pruthvi_pmr" target="_blank">Twitter</a>
+                <button id="theme-switcher">Tenma</button>
             </footer>
         </div>
 
